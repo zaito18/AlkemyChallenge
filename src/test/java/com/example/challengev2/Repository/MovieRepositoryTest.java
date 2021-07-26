@@ -32,7 +32,6 @@ public class MovieRepositoryTest {
     @Transactional
     @Rollback
     public void thatAMovieCanBePersisted(){
-
        Genre genreOfTheMovie=givenAGenre("Fantasy","URLImage");
        Actor actorSelectedForTheMovie=givenACharacter("www.img.com/personajeImg","Shrek","30","300","a great character");
        Calendar date = givenADate();
