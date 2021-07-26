@@ -37,7 +37,8 @@ public class Genre {
         this.urlImage = urlImage;
     }
 
-    @OneToMany(cascade = CascadeType.DETACH,mappedBy = "genre")
+    @JoinTable(name = "genre_movie",joinColumns = @JoinColumn(name = "id_genre", nullable = false),inverseJoinColumns = @JoinColumn(name="id_movie", nullable = false))
+    @ManyToMany
     public Set<Movie> getListOfMovies() {
         return listOfMovies;
     }

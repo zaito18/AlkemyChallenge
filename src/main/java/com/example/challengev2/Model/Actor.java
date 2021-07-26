@@ -27,7 +27,8 @@ public class Actor {
         return idActor;
     }
 
-   @JoinTable(name = "actor_movie",joinColumns = @JoinColumn(name = "id_actor", nullable = false),inverseJoinColumns = @JoinColumn(name="id_movie", nullable = false))
+
+    @JoinTable(name = "actor_movie",joinColumns = @JoinColumn(name = "id_actor", nullable = false),inverseJoinColumns = @JoinColumn(name="id_movie", nullable = false))
     @ManyToMany
     public Set<Movie> getListOfMovies() {
         return listOfMovies;

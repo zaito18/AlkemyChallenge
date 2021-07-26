@@ -9,19 +9,18 @@ import java.util.Set;
 @Entity
 public class Movie {
 
-
     private Long idMovie;
     private String urlImage;
     private String title;
     private Calendar creationDate;
     private String rating;
     private Set<Actor> listOfActor;
-    private Genre genre;
+    private Set<Genre> listOfGenre;
 
     public Movie() {
         this.listOfActor=new HashSet<Actor>();
+        this.listOfGenre=new HashSet<Genre>();
     }
-
 
     public String getUrlImage() {
         return urlImage;
@@ -74,12 +73,12 @@ public class Movie {
         this.idMovie = idMovie;
     }
 
-    @ManyToOne(optional = false,targetEntity = Genre.class)
-    public Genre getGenre() {
-        return genre;
+    @ManyToMany(mappedBy = "listOfMovies",fetch=FetchType.EAGER)
+    public Set<Genre> getListOfGenre() {
+        return listOfGenre;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setListOfGenre(Set<Genre> listOfGenre) {
+        this.listOfGenre = listOfGenre;
     }
 }

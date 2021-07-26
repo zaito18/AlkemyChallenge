@@ -1,17 +1,13 @@
 package com.example.challengev2.Repository;
 
-
 import com.example.challengev2.Model.Actor;
-import com.example.challengev2.Model.Movie;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -25,9 +21,11 @@ public class ActorRepositoryTests {
     @Rollback
     @Transactional
     public void thatAActorCanBePersisted(){
+
         Actor actor = givenAActor("www.example.com/img","Homer","40","90","the best");
         Long idActor=whenSaveTheActor(actor);
         thenActorExists(idActor);
+
     }
 
     @Test
@@ -57,6 +55,7 @@ public class ActorRepositoryTests {
         thenVerifyThatTheActorNotExists(actor1);
     }
 
+
     private void thenVerifyThatTheActorNotExists(Actor actor1) {
         assertThat(actor1).isNull();
     }
@@ -80,7 +79,6 @@ public class ActorRepositoryTests {
         actorRepository.save(actor.get());
         return actor;
     }
-
 
     private void thenVerifyTheName(Optional<Actor> actor) {
         assertThat("Marge").isEqualTo(actor.get().getName());
@@ -121,21 +119,5 @@ public class ActorRepositoryTests {
         c.setHistory(history);
         return  whenSaveTheActor(c);
     }
-
-
-
-
-
-    /*private Movie givenAMovie(String urlImage,String title) {
-        Calendar creationDate = Calendar.getInstance();
-        creationDate.set(Calendar.YEAR, 1990);
-        creationDate.set(Calendar.MONTH, Calendar.APRIL);
-        creationDate.set(Calendar.DATE, Calendar.WEDNESDAY);
-        Integer numberRating = 3;
-        Rating rating = new Rating(numberRating);
-        Movie movie = new Movie("urlImage", "title", creationDate,rating);
-        return movie;
-    }
-   */
 
 }
