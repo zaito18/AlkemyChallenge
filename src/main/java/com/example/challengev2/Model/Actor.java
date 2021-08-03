@@ -1,13 +1,12 @@
 package com.example.challengev2.Model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
-public class Actor {
 
+public class Actor {
 
     private Long idActor;
     private String urlImage;
@@ -15,14 +14,15 @@ public class Actor {
     private String age;
     private String weight;
     private String history;
-    private Set<Movie> listOfMovies;
+    private List<Movie> listOfMovies;
 
     public Actor() {
-        this.listOfMovies = new HashSet<Movie>();
+        this.listOfMovies = new ArrayList<Movie>();
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public Long getIdActor() {
         return idActor;
     }
@@ -30,11 +30,12 @@ public class Actor {
 
     @JoinTable(name = "actor_movie",joinColumns = @JoinColumn(name = "id_actor", nullable = false),inverseJoinColumns = @JoinColumn(name="id_movie", nullable = false))
     @ManyToMany
-    public Set<Movie> getListOfMovies() {
+    public List<Movie> getListOfMovies() {
         return listOfMovies;
     }
 
-    public void setListOfMovies(Set<Movie> listOfMovies) {
+
+    public void setListOfMovies(List<Movie> listOfMovies) {
         this.listOfMovies = listOfMovies;
     }
 
@@ -50,6 +51,7 @@ public class Actor {
         this.urlImage = urlImage;
     }
 
+
     public String getName() {
         return name;
     }
@@ -57,6 +59,7 @@ public class Actor {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public String getAge() {
         return age;
@@ -66,6 +69,7 @@ public class Actor {
         this.age = age;
     }
 
+
     public String getWeight() {
         return weight;
     }
@@ -73,6 +77,7 @@ public class Actor {
     public void setWeight(String weight) {
         this.weight = weight;
     }
+
 
     public String getHistory() {
         return history;
@@ -82,5 +87,16 @@ public class Actor {
         this.history = history;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Actor actor = (Actor) o;
+        return idActor.equals(actor.idActor);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(idActor);
+    }
 }

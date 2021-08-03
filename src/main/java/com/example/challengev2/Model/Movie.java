@@ -2,9 +2,7 @@ package com.example.challengev2.Model;
 
 
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Movie {
@@ -14,12 +12,12 @@ public class Movie {
     private String title;
     private Calendar creationDate;
     private String rating;
-    private Set<Actor> listOfActor;
-    private Set<Genre> listOfGenre;
+    private List<Actor> listOfActor;
+    private List<Genre> listOfGenre;
 
     public Movie() {
-        this.listOfActor=new HashSet<Actor>();
-        this.listOfGenre=new HashSet<Genre>();
+        this.listOfActor=new ArrayList<Actor>();
+        this.listOfGenre=new ArrayList<Genre>();
     }
 
     public String getUrlImage() {
@@ -54,12 +52,12 @@ public class Movie {
         this.rating = rating;
     }
 
-    @ManyToMany(mappedBy = "listOfMovies", fetch = FetchType.EAGER)
-    public Set<Actor> getListOfActor() {
+    @ManyToMany(mappedBy = "listOfMovies")
+    public List<Actor> getListOfActor() {
         return listOfActor;
     }
 
-    public void setListOfActor(Set<Actor> listOfActor) {
+    public void setListOfActor(List<Actor> listOfActor) {
         this.listOfActor = listOfActor;
     }
 
@@ -73,12 +71,12 @@ public class Movie {
         this.idMovie = idMovie;
     }
 
-    @ManyToMany(mappedBy = "listOfMovies",fetch=FetchType.EAGER)
-    public Set<Genre> getListOfGenre() {
+    @ManyToMany(mappedBy = "listOfMovies")
+    public List<Genre> getListOfGenre() {
         return listOfGenre;
     }
 
-    public void setListOfGenre(Set<Genre> listOfGenre) {
+    public void setListOfGenre(List<Genre> listOfGenre) {
         this.listOfGenre = listOfGenre;
     }
 }

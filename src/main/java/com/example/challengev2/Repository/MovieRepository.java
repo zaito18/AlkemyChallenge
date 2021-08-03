@@ -1,10 +1,16 @@
 package com.example.challengev2.Repository;
-
-import com.example.challengev2.Model.Genre;
 import com.example.challengev2.Model.Movie;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.util.MultiValueMap;
 
-@Repository
-public interface MovieRepository extends JpaRepository<Movie,Long> {
+import java.util.List;
+
+
+public interface MovieRepository {
+
+    List<Movie> findAllByFilter(MultiValueMap<String,String> params);
+    Movie saveMovie(Movie movie);
+    void deleteMovieById(Long id);
+    List<Movie> findAll();
+    List<Movie> findMovieById(Long id);
+
 }
