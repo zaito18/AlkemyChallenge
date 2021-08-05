@@ -1,7 +1,7 @@
 package com.example.challengev2.Service;
 
+import com.example.challengev2.Model.Actor;
 import com.example.challengev2.Model.Movie;
-import com.example.challengev2.Util.MovieDTO;
 import com.example.challengev2.Util.MovieDTOII;
 import com.example.challengev2.Util.MovieDTOIII;
 import org.springframework.util.MultiValueMap;
@@ -14,4 +14,11 @@ public interface MovieService {
     List<MovieDTOIII> getAllMovies();
 
     Movie addMovie(Movie movie);
+
+    void deleteMovieById(Long id);
+
+    Movie getMovieById(Long id);
+
+    Movie updateMovie(Long idMovie, Movie movieDetails);
+
 }

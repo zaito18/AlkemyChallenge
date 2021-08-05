@@ -24,9 +24,9 @@ public class DisneyApiController {
     private final MovieServiceImpl movieServiceImpl;
 
     @Autowired
-    public DisneyApiController(ActorServiceImpl actorServiceImpl,MovieServiceImpl movieServiceImpl){
-        this.actorServiceImpl=actorServiceImpl;
-        this.movieServiceImpl=movieServiceImpl;
+    public DisneyApiController(ActorServiceImpl actorServiceImpl, MovieServiceImpl movieServiceImpl) {
+        this.actorServiceImpl = actorServiceImpl;
+        this.movieServiceImpl = movieServiceImpl;
     }
 
     @GetMapping("/characters")
@@ -35,9 +35,10 @@ public class DisneyApiController {
     }
 
     @GetMapping("/characters/details")
-    public ResponseEntity<List<ActorDTOII>> getAllActors(){
-        return new ResponseEntity<>(actorServiceImpl.getAllActors(),HttpStatus.OK);
+    public ResponseEntity<List<ActorDTOII>> getAllActors() {
+        return new ResponseEntity<>(actorServiceImpl.getAllActors(), HttpStatus.OK);
     }
+
 
     @PostMapping(value = "/characters/addCharacter")
     public ResponseEntity<Movie> addActor(@RequestBody Actor actor) {
@@ -48,16 +49,16 @@ public class DisneyApiController {
     }
 
     @DeleteMapping("/characters/delete/{idActor}")
-    public ResponseEntity<String> deleteActor(@PathVariable (value = "idActor") String idActor){
+    public ResponseEntity<Long> deleteActor(@PathVariable (value = "idActor") Long idActor){
         actorServiceImpl.deleteActorById(idActor);
-        if(actorServiceImpl.getActorById(idActor).size()==0) {
+        if(actorServiceImpl.getActorById(idActor)==null) {
            return new ResponseEntity<>(idActor,HttpStatus.OK);}
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/characters/update/{idActor}")
     public ResponseEntity<Long> updateActor(@PathVariable (value = "idActor") Long idActor,@RequestBody Actor actorDetails){
-        if(actorServiceImpl.updateActor(idActor,actorDetails)!=null){
+        if(actorServiceImpl.updateActor(idActor,actorDetails)!= null){
             return new ResponseEntity<>(idActor,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -80,6 +81,23 @@ public class DisneyApiController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/movies/delete/{idMovie}")
+    public ResponseEntity<Long> deleteMovie(@PathVariable (value = "idMovie") Long idMovie){
+        movieServiceImpl.deleteMovieById(idMovie);
+        if(movieServiceImpl.getMovieById(idMovie)==null) {
+            return new ResponseEntity<>(idMovie,HttpStatus.OK);}
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/movies/update/{idMovie}")
+    public ResponseEntity<Long> updateMovie(@PathVariable (value = "idMovie") Long idMovie,@RequestBody Movie movieDetails){
+        if(movieServiceImpl.updateMovie(idMovie,movieDetails)!= null){
+            return new ResponseEntity<>(idMovie,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 
 

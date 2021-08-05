@@ -51,7 +51,28 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Movie addMovie(Movie movie) {
-        return movieRepositoryImpl.saveMovie(movie);
+        movieRepositoryImpl.saveMovie(movie);
+        return movieRepositoryImpl.findOneMovieById(movie.getIdMovie());
+    }
+
+    @Override
+    public void deleteMovieById(Long id) {
+        movieRepositoryImpl.deleteMovieById(id);
+    }
+
+    @Override
+    public Movie getMovieById(Long id) {
+        return movieRepositoryImpl.findOneMovieById(id);
+    }
+
+    @Override
+    public Movie updateMovie(Long idMovie, Movie movieDetails) {
+       Movie movie = movieRepositoryImpl.findOneMovieById(idMovie);
+        movie.setUrlImage(movieDetails.getUrlImage());
+        movie.setTitle(movieDetails.getTitle());
+        movie.setRating(movieDetails.getRating());
+        movie.setCreationDate(movieDetails.getCreationDate());
+        return addMovie(movie);
     }
 
     private List<ActorDTOII> iteration(List<Actor> list){

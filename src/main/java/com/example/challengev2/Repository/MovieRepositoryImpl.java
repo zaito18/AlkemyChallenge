@@ -1,5 +1,6 @@
 package com.example.challengev2.Repository;
 
+import com.example.challengev2.Model.Actor;
 import com.example.challengev2.Model.Movie;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -11,6 +12,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.MultiValueMap;
 
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,53 +24,64 @@ import java.util.Objects;
 public class MovieRepositoryImpl implements MovieRepository{
 
 
-    private Session session;
+    private final SessionFactory sessionFactory;
+    private final EntityManager entityManager;
 
     @Autowired
-    public MovieRepositoryImpl(SessionFactory sessionFactory){
-        this.sessionFactory=sessionFactory;
+    public MovieRepositoryImpl(EntityManagerFactory sessionFactory, EntityManager entityManager){
+        this.sessionFactory=sessionFactory.unwrap(SessionFactory.class);
+        this.entityManager = entityManager;
     }
 
     @SuppressWarnings({"deprecation","unchecked"})
     @Override
     public List<Movie> findAllByFilter(MultiValueMap<String, String> params) {
-        Criteria cr = sessionFactory.getCurrentSession().createCriteria(Movie.class);
-        if(params.containsKey("name")){
-            cr.add(Restrictions.eq("title",params.getFirst("name")));
+        Criteria cri = sessionFactory.openSession().createCriteria(Movie.class);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Movie> cr = cb.createQuery(Movie.class);
+        Root<Movie> root = cr.from(Movie.class);
+        if(params.containsKey("name")) {
+            cr.select(root).where(cb.like(root.get("title"), params.getFirst("name")));
         }
-        if(params.containsKey("genre")) {
-            cr.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
-            cr.createCriteria("listOfGenre").add(Restrictions.eq("idGenre", Long.parseLong(Objects.requireNonNull(params.getFirst("genre")))));
+        if(params.containsKey("order")){
+            if(params.get("order").contains("ASC")){
+                cr.select(root).orderBy(cb.asc(root.get("creationDate")));
+            }
+            if(params.get("order").contains("DESC")){
+                cr.select(root).orderBy(cb.desc(root.get("creationDate")));
+            }
         }
-         if(params.containsKey("order")){
-             // System.out.println("hola");
-            cr.addOrder(Order.asc("creationDate"));
-         // }
-         // else
-          //    System.out.println("hello");
-            //  cr.addOrder(Order.desc("creation_date"));
-
-      }
-        return cr.list();
-    }
-
+        if(params.containsKey("genre")){
+            cri.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+            cri.createCriteria("listOfGenre").add(Restrictions.eq("idGenre", Long.parseLong(Objects.requireNonNull(params.getFirst("genre")))));
+            return cri.list();
+        }
+        return entityManager.createQuery(cr).getResultList();
+        }
 
     @Override
-    public Movie saveMovie(Movie movie) {
-        sessionFactory.getCurrentSession().save(movie);
-        return movie;
+    public void saveMovie(Movie movie) {
+        entityManager.persist(movie);
     }
 
     @Override
     public void deleteMovieById(Long id) {
-
+        Movie movie = findOneMovieById(id);
+        entityManager.remove(movie);
     }
 
-    @SuppressWarnings({"deprecation","unchecked"})
+    @Override
+    public Movie findOneMovieById(Long id) {
+        return entityManager.find(Movie.class,id);
+    }
+
+
     @Override
     public List<Movie> findAll() {
-        Criteria cr = sessionFactory.getCurrentSession().createCriteria(Movie.class);
-        return cr.list();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Movie> cq = cb.createQuery(Movie.class);
+        //Root<Movie> movie = cq.from(Movie.class);
+        return entityManager.createQuery(cq).getResultList();
     }
 
     @SuppressWarnings({"deprecation","unchecked"})

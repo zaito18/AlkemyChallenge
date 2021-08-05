@@ -62,18 +62,18 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public Actor addActor(Actor actor) {
-       actorRepositoryImpl.saveActor(actor);
-        return actor;
+        actorRepositoryImpl.saveActor(actor);
+        return actorRepositoryImpl.findOneActorById(actor.getIdActor());
     }
 
     @Override
-    public void deleteActorById(String id) {
+    public void deleteActorById(Long id) {
         actorRepositoryImpl.deleteActorById(id);
     }
 
     @Override
-    public List<Actor> getActorById(String id) {
-        return actorRepositoryImpl.findActorById(Long.parseLong(id));
+    public Actor getActorById(Long id) {
+        return actorRepositoryImpl.findOneActorById(id);
     }
 
     @Override

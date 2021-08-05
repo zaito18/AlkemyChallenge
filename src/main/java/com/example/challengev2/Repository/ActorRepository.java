@@ -9,9 +9,9 @@ public interface ActorRepository{
 
     List<Actor> findAllByFilter(MultiValueMap<String,String> params);
     void saveActor(Actor actor);
-    void deleteActorById(String id);
+    void deleteActorById(Long id);
     List<Actor> findAll();
-    List<Actor> findActorById(Long id);
+    Actor findActorById(Long id);
 
     Actor findOneActorById(Long idActor);
 }

@@ -15,9 +15,9 @@ public interface ActorService {
 
     Actor addActor(Actor actor);
 
-    void deleteActorById(String id);
+    void deleteActorById(Long id);
 
-    List<Actor> getActorById(String id);
+    Actor getActorById(Long id);
 
     Actor updateActor(Long idActor, Actor actorDetails);
 }
