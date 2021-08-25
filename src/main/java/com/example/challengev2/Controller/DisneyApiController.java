@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController
+@RestController("/apiv1")
 public class DisneyApiController {
+
 
     private final ActorServiceImpl actorServiceImpl;
     private final MovieServiceImpl movieServiceImpl;

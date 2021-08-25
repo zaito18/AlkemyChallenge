@@ -12,6 +12,5 @@ public interface ActorRepository{
     void deleteActorById(Long id);
     List<Actor> findAll();
     Actor findActorById(Long id);
-
     Actor findOneActorById(Long idActor);
 }
