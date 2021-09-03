@@ -1,15 +1,15 @@
 # AlkemyChallenge
-Api realizada para el challenge brindado por Alkemy
+_Api realizada para el challenge brindado por Alkemy_
 
-Tareas realizadas : 
-Funciones del challenge .
+### Tareas realizadas : 
 
-Spring Security.
+_Funciones del challenge._
 
-Documentacion con postman(click en el boton para ver la documetacion).
+_Spring Security._
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/16202564-1830b8d3-5801-4f3e-9c4c-cd57d0b00f42?action=collection%2Ffork&collection-url=entityId%3D16202564-1830b8d3-5801-4f3e-9c4c-cd57d0b00f42%26entityType%3Dcollection%26workspaceId%3D342f02bd-bf00-4e2b-b92c-f61675dc5f27)
+_Documentacion con postman:_
+https://documenter.getpostman.com/view/16202564/U16ev85U
 
-Tareas restantes:
+### Tareas restantes:
 
-Junit Test. 
+_Junit Test._
