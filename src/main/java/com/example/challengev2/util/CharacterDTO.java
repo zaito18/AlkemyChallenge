@@ -1,11 +1,11 @@
 package com.example.challengev2.util;
 
-public class ActorDTO {
+public class CharacterDTO {
 
     private String urlImage;
     private String name;
 
-    public ActorDTO(String urlImage, String name) {
+    public CharacterDTO(String urlImage, String name) {
         this.urlImage = urlImage;
         this.name = name;
     }

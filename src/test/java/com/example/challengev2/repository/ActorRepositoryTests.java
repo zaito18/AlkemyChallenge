@@ -1,6 +1,7 @@
-package com.example.challengev2.repository;
 
-import com.example.challengev2.model.Actor;
+/*package com.example.challengev2.repository;
+
+import com.example.challengev2.model.Character;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.*;
 public class ActorRepositoryTests{
 
     @Autowired
-    private ActorRepositoryImpl actorRepository;
+    private CharacterRepositoryImpl actorRepository;
 
 
 
@@ -36,7 +37,7 @@ public class ActorRepositoryTests{
 
     }
     private void givenUnActorPersistido() {
-        Actor actor = new Actor();
+        Character actor = new Character();
         actor.setName("Dicaprio");
         actor.setUrlImage("lsd3i5usakdjf3");
         actor.setAge("40");
@@ -47,3 +48,5 @@ public class ActorRepositoryTests{
     }
 
 }
+
+*/

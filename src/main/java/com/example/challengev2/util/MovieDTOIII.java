@@ -8,10 +8,10 @@ public class MovieDTOIII {
     private String urlImage;
     private String title;
     private Calendar creationDate;
-    private String rating;
-    private List<ActorDTOII> listOfActor;
+    private Integer rating;
+    private List<CharacterDTOII> listOfActor;
 
-    public MovieDTOIII(String urlImage, String title, Calendar creationDate, String rating) {
+    public MovieDTOIII(String urlImage, String title, Calendar creationDate, Integer rating) {
         this.urlImage = urlImage;
         this.title = title;
         this.creationDate = creationDate;
@@ -42,19 +42,19 @@ public class MovieDTOIII {
         this.creationDate = creationDate;
     }
 
-    public String getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
-    public List<ActorDTOII> getListOfActor() {
+    public List<CharacterDTOII> getListOfActor() {
         return listOfActor;
     }
 
-    public void setListOfActor(List<ActorDTOII> listOfActor) {
+    public void setListOfActor(List<CharacterDTOII> listOfActor) {
         this.listOfActor = listOfActor;
     }
 }

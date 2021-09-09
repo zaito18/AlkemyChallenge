@@ -2,13 +2,16 @@ package com.example.challengev2.util;
 
 import java.util.List;
 
-public class ActorDTOII {
+public class CharacterDTOII {
 
     private String urlImage;
     private String name;
-    private String age;
-    private String weight;
+    private Integer age;
+    private Double weight;
     private String history;
+
+    public CharacterDTOII() {
+    }
 
     public List<MovieDTO> getListOfMovies() {
         return listOfMovies;
@@ -20,7 +23,7 @@ public class ActorDTOII {
 
     private List<MovieDTO> listOfMovies;
 
-    public ActorDTOII(String urlImage, String name, String age, String weight, String history) {
+    public CharacterDTOII(String urlImage, String name, Integer age, Double weight, String history) {
         this.urlImage = urlImage;
         this.name = name;
         this.age = age;
@@ -44,19 +47,19 @@ public class ActorDTOII {
         this.name = name;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public String getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 

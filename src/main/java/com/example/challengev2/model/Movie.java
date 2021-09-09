@@ -11,12 +11,12 @@ public class Movie {
     private String urlImage;
     private String title;
     private Calendar creationDate;
-    private String rating;
-    private List<Actor> listOfActor;
+    private Integer rating;
+    private List<Character> listOfCharacter;
     private List<Genre> listOfGenre;
 
     public Movie() {
-        this.listOfActor=new ArrayList<Actor>();
+        this.listOfCharacter =new ArrayList<Character>();
         this.listOfGenre=new ArrayList<Genre>();
     }
 
@@ -44,21 +44,21 @@ public class Movie {
         this.creationDate = creationDate;
     }
 
-    public String getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
     @ManyToMany(mappedBy = "listOfMovies")
-    public List<Actor> getListOfActor() {
-        return listOfActor;
+    public List<Character> getListOfActor() {
+        return listOfCharacter;
     }
 
-    public void setListOfActor(List<Actor> listOfActor) {
-        this.listOfActor = listOfActor;
+    public void setListOfActor(List<Character> listOfCharacter) {
+        this.listOfCharacter = listOfCharacter;
     }
 
     @Id

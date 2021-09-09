@@ -1,6 +1,6 @@
 package com.example.challengev2.service;
 
-import com.example.challengev2.model.Actor;
+import com.example.challengev2.model.Character;
 import com.example.challengev2.model.Movie;
 import com.example.challengev2.repository.MovieRepositoryImpl;
 import com.example.challengev2.util.*;
@@ -37,11 +37,10 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<MovieDTOIII> getAllMovies() {
-
         List<Movie> listToIterate = movieRepositoryImpl.findAll();
         List<MovieDTOIII> listToReturn = new ArrayList<>();
         for (Movie aux:listToIterate){
-            List<ActorDTOII> listOfActor = iteration(aux.getListOfActor());
+            List<CharacterDTOII> listOfActor = iteration(aux.getListOfActor());
             MovieDTOIII movieDTOIII = new MovieDTOIII(aux.getUrlImage(),aux.getTitle(),aux.getCreationDate(),aux.getRating());
             movieDTOIII.setListOfActor(listOfActor);
             listToReturn.add(movieDTOIII);
@@ -50,35 +49,56 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie addMovie(Movie movie) {
-        movieRepositoryImpl.saveMovie(movie);
-        return movieRepositoryImpl.findOneMovieById(movie.getIdMovie());
+    public void save(MovieDTO movieDTO) {
+
+        if((movieDTO.getTitle()==null || movieDTO.getTitle().isBlank()) || movieDTO.getCreationDate()==null || (movieDTO.getUrlImage()==null || movieDTO.getUrlImage().isBlank()) || movieDTO.getRating()==null ){
+            throw  new IncompleteOrIncompatibleOrNullFieldsException("Incomplete/incompatible or null fields");
+        }
+        else {
+            Movie movie = new Movie();
+            movie.setUrlImage(movieDTO.getUrlImage());
+            movie.setRating(movieDTO.getRating());
+            movie.setTitle(movieDTO.getTitle());
+            movie.setCreationDate(movieDTO.getCreationDate());
+            movieRepositoryImpl.save(movie);
+        }
     }
 
+
     @Override
-    public void deleteMovieById(Long id) {
-        movieRepositoryImpl.deleteMovieById(id);
+    public void delete(Long id) {
+        if(getMovieById(id)==null){
+            throw  new TheCharacterDoesNotExistException("The character does not exist");
+        }
+        movieRepositoryImpl.delete(getMovieById(id));
     }
 
     @Override
     public Movie getMovieById(Long id) {
-        return movieRepositoryImpl.findOneMovieById(id);
+        return movieRepositoryImpl.getMovieById(id);
     }
 
     @Override
-    public Movie updateMovie(Long idMovie, Movie movieDetails) {
-       Movie movie = movieRepositoryImpl.findOneMovieById(idMovie);
-        movie.setUrlImage(movieDetails.getUrlImage());
-        movie.setTitle(movieDetails.getTitle());
-        movie.setRating(movieDetails.getRating());
-        movie.setCreationDate(movieDetails.getCreationDate());
-        return addMovie(movie);
+    public void update(Long idMovie, MovieDTO movieDetails) {
+        if(movieRepositoryImpl.getMovieById(idMovie) != null) {
+            if((movieDetails.getUrlImage()==null || movieDetails.getUrlImage().isBlank()) || movieDetails.getRating()==null || (movieDetails.getTitle()==null || movieDetails.getTitle().isBlank()) || movieDetails.getCreationDate()==null){
+                throw  new IncompleteOrIncompatibleOrNullFieldsException("Incomplete/incompatible or null fields");
+            }
+            Movie movie = movieRepositoryImpl.getMovieById(idMovie);
+            movie.setUrlImage(movieDetails.getUrlImage());
+            movie.setRating(movieDetails.getRating());
+            movie.setTitle(movieDetails.getTitle());
+            movie.setCreationDate(movieDetails.getCreationDate());
+            movieRepositoryImpl.save(movie);
+        }else {
+            throw new TheCharacterDoesNotExistException("The character does not exist");
+        }
     }
 
-    private List<ActorDTOII> iteration(List<Actor> list){
-        List<ActorDTOII> listOfActor = new ArrayList<>();
-        for(Actor aux:list){
-            ActorDTOII actor = new ActorDTOII(aux.getUrlImage(),aux.getName(),aux.getAge(),aux.getWeight(),aux.getHistory());
+    private List<CharacterDTOII> iteration(List<Character> list){
+        List<CharacterDTOII> listOfActor = new ArrayList<>();
+        for(Character aux:list){
+            CharacterDTOII actor = new CharacterDTOII(aux.getUrlImage(),aux.getName(),aux.getAge(),aux.getWeight(),aux.getHistory());
             listOfActor.add(actor);
         }
         return listOfActor;

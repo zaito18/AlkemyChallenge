@@ -1,6 +1,7 @@
 package com.example.challengev2.repository;
 
 import com.example.challengev2.model.Movie;
+import com.example.challengev2.util.VoidParameterException;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.MultiValueMap;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Objects;
+
 
 @Repository
 public class MovieRepositoryImpl implements MovieRepository{
@@ -38,16 +39,26 @@ public class MovieRepositoryImpl implements MovieRepository{
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Movie> cr = cb.createQuery(Movie.class);
         Root<Movie> root = cr.from(Movie.class);
-        if(params.containsKey("name")) {
+
+        if(params.containsKey("name") && Objects.equals(params.getFirst("name"), "")){
+            throw  new VoidParameterException("the parameter name is incomplete");
+        }
+        else if(params.containsKey("name")) {
             cr.select(root).where(cb.like(root.get("title"), params.getFirst("name")));
         }
-        if(params.containsKey("order")){
+        if(params.containsKey("order") && Objects.equals(params.getFirst("name"), "")){
+            throw  new VoidParameterException("the parameter name is incomplete");
+        }
+        else if(params.containsKey("order")){
             if(params.get("order").contains("ASC")){
                 cr.select(root).orderBy(cb.asc(root.get("creationDate")));
             }
             if(params.get("order").contains("DESC")){
                 cr.select(root).orderBy(cb.desc(root.get("creationDate")));
             }
+        }
+        else   if(params.containsKey("genre") && Objects.equals(params.getFirst("genre"), "")){
+            throw  new VoidParameterException("the parameter movies is incomplete");
         }
         if(params.containsKey("genre")){
             cri.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
@@ -58,18 +69,17 @@ public class MovieRepositoryImpl implements MovieRepository{
         }
 
     @Override
-    public void saveMovie(Movie movie) {
+    public void save(Movie movie) {
         entityManager.persist(movie);
     }
 
     @Override
-    public void deleteMovieById(Long id) {
-        Movie movie = findOneMovieById(id);
+    public void delete(Movie movie) {
         entityManager.remove(movie);
     }
 
     @Override
-    public Movie findOneMovieById(Long id) {
+    public Movie getMovieById(Long id) {
         return entityManager.find(Movie.class,id);
     }
 

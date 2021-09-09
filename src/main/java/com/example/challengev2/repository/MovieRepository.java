@@ -8,9 +8,9 @@ import java.util.List;
 public interface MovieRepository {
 
     List<Movie> findAllByFilter(MultiValueMap<String,String> params);
-    void saveMovie(Movie movie);
-    void deleteMovieById(Long id);
+    void save(Movie movie);
+    void delete(Movie movie);
     List<Movie> findAll();
-    Movie findOneMovieById(Long id);
+    Movie getMovieById(Long id);
 
 }

@@ -7,9 +7,9 @@ public class MovieDTO {
     private String urlImage;
     private String title;
     private Calendar creationDate;
-    private String rating;
+    private Integer rating;
 
-    public MovieDTO(String urlImage, String title, Calendar creationDate, String rating) {
+    public MovieDTO(String urlImage, String title, Calendar creationDate, Integer rating) {
         this.urlImage = urlImage;
         this.title = title;
         this.creationDate = creationDate;
@@ -40,11 +40,11 @@ public class MovieDTO {
         this.creationDate = creationDate;
     }
 
-    public String getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 }
