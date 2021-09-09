@@ -1,8 +1,15 @@
 # AlkemyChallenge
-Api realizada para el challenge brindado por Alkemy
+_Api realizada para el challenge brindado por Alkemy_
 
-Tareas realizadas : 
-Mapeo de las clasesy relaciones,funciones pedidas en el challenge,Spring security y documentacion con postman.
+### Tareas realizadas : 
 
-Tareas restantes:
-Junit Test 
+_Funciones del challenge._
+
+_Spring Security._
+
+_Documentacion con postman:_
+https://documenter.getpostman.com/view/16202564/U16ev85U
+
+### Tareas restantes:
+
+_Junit Test._
