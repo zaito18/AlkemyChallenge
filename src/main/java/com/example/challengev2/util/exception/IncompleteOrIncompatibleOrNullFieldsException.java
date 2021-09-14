@@ -1,9 +1,7 @@
-package com.example.challengev2.util;
+package com.example.challengev2.util.exception;
 
-public class TheCharacterDoesNotExistException extends RuntimeException {
+public class IncompleteOrIncompatibleOrNullFieldsException extends RuntimeException {
 
-    public TheCharacterDoesNotExistException() {
-    }
     private static final long serialVersionUID = 1L;
     private String errorMessage;
 
@@ -15,8 +13,14 @@ public class TheCharacterDoesNotExistException extends RuntimeException {
         this.errorMessage = errorMessage;
     }
 
-    public TheCharacterDoesNotExistException(String errorMessage) {
+    public IncompleteOrIncompatibleOrNullFieldsException() {
+    }
+
+    public IncompleteOrIncompatibleOrNullFieldsException(String errorMessage) {
         super();
         this.errorMessage=errorMessage;
     }
+
+
+
 }

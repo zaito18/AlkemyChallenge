@@ -1,4 +1,4 @@
-package com.example.challengev2.util;
+package com.example.challengev2.util.dto;
 
 import java.util.List;
 

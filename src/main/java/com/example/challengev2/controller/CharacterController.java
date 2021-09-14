@@ -1,6 +1,7 @@
 package com.example.challengev2.controller;
 import com.example.challengev2.service.CharacterServiceImpl;
-import com.example.challengev2.util.*;
+import com.example.challengev2.util.dto.CharacterDTO;
+import com.example.challengev2.util.dto.CharacterDTOII;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -25,7 +26,7 @@ public class CharacterController {
     }
 
     @GetMapping("/characters")
-    public ResponseEntity<List<CharacterDTO>> getAllActorsByFilter(@RequestParam MultiValueMap<String,String> params){
+    public ResponseEntity<List<CharacterDTO>> getAllCharactersByFilter(@RequestParam MultiValueMap<String,String> params){
         return new ResponseEntity<>(actorServiceImpl.getAllCharactersDTO(params),HttpStatus.OK);
     }
 

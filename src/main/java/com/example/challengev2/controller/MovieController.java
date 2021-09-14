@@ -1,9 +1,9 @@
 package com.example.challengev2.controller;
 
 import com.example.challengev2.service.MovieServiceImpl;
-import com.example.challengev2.util.MovieDTO;
-import com.example.challengev2.util.MovieDTOII;
-import com.example.challengev2.util.MovieDTOIII;
+import com.example.challengev2.util.dto.MovieDTO;
+import com.example.challengev2.util.dto.MovieDTOII;
+import com.example.challengev2.util.dto.MovieDTOIII;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

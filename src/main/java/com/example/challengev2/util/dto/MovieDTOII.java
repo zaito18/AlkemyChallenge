@@ -1,19 +1,17 @@
-package com.example.challengev2.util;
+package com.example.challengev2.util.dto;
 
 import java.util.Calendar;
 
-public class MovieDTO {
-
+public class MovieDTOII {
     private String urlImage;
     private String title;
     private Calendar creationDate;
-    private Integer rating;
 
-    public MovieDTO(String urlImage, String title, Calendar creationDate, Integer rating) {
+
+    public MovieDTOII(String urlImage, String title, Calendar creationDate) {
         this.urlImage = urlImage;
         this.title = title;
-        this.creationDate = creationDate;
-        this.rating = rating;
+        this.creationDate=creationDate;
     }
 
     public String getUrlImage() {
@@ -40,11 +38,4 @@ public class MovieDTO {
         this.creationDate = creationDate;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
 }

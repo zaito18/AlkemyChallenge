@@ -1,8 +1,8 @@
 package com.example.challengev2.service;
 
 import com.example.challengev2.model.Character;
-import com.example.challengev2.util.CharacterDTO;
-import com.example.challengev2.util.CharacterDTOII;
+import com.example.challengev2.util.dto.CharacterDTO;
+import com.example.challengev2.util.dto.CharacterDTOII;
 import org.springframework.util.MultiValueMap;
 
 import java.util.List;

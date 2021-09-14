@@ -1,4 +1,6 @@
-package com.example.challengev2.util;
+package com.example.challengev2.util.dto;
+
+import com.example.challengev2.util.dto.CharacterDTOII;
 
 import java.util.Calendar;
 import java.util.List;

@@ -4,7 +4,11 @@ import com.example.challengev2.model.Character;
 
 import com.example.challengev2.model.Movie;
 import com.example.challengev2.repository.CharacterRepositoryImpl;
-import com.example.challengev2.util.*;
+import com.example.challengev2.util.dto.CharacterDTO;
+import com.example.challengev2.util.dto.CharacterDTOII;
+import com.example.challengev2.util.dto.MovieDTO;
+import com.example.challengev2.util.exception.IncompleteOrIncompatibleOrNullFieldsException;
+import com.example.challengev2.util.exception.TheCharacterDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;

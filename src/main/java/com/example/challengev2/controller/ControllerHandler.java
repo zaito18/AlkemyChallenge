@@ -1,8 +1,8 @@
 package com.example.challengev2.controller;
 
-import com.example.challengev2.util.IncompleteOrIncompatibleOrNullFieldsException;
-import com.example.challengev2.util.TheCharacterDoesNotExistException;
-import com.example.challengev2.util.VoidParameterException;
+import com.example.challengev2.util.exception.IncompleteOrIncompatibleOrNullFieldsException;
+import com.example.challengev2.util.exception.TheCharacterDoesNotExistException;
+import com.example.challengev2.util.exception.VoidParameterException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,9 +1,9 @@
 package com.example.challengev2.service;
 
 import com.example.challengev2.model.Movie;
-import com.example.challengev2.util.MovieDTO;
-import com.example.challengev2.util.MovieDTOII;
-import com.example.challengev2.util.MovieDTOIII;
+import com.example.challengev2.util.dto.MovieDTO;
+import com.example.challengev2.util.dto.MovieDTOII;
+import com.example.challengev2.util.dto.MovieDTOIII;
 import org.springframework.util.MultiValueMap;
 
 import java.util.List;

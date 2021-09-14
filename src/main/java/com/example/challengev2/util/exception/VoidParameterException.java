@@ -1,4 +1,4 @@
-package com.example.challengev2.util;
+package com.example.challengev2.util.exception;
 
 public class VoidParameterException extends RuntimeException{
     private static final long serialVersionUID = 1L;

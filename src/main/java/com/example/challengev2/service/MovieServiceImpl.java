@@ -3,7 +3,12 @@ package com.example.challengev2.service;
 import com.example.challengev2.model.Character;
 import com.example.challengev2.model.Movie;
 import com.example.challengev2.repository.MovieRepositoryImpl;
-import com.example.challengev2.util.*;
+import com.example.challengev2.util.dto.CharacterDTOII;
+import com.example.challengev2.util.dto.MovieDTO;
+import com.example.challengev2.util.dto.MovieDTOII;
+import com.example.challengev2.util.dto.MovieDTOIII;
+import com.example.challengev2.util.exception.IncompleteOrIncompatibleOrNullFieldsException;
+import com.example.challengev2.util.exception.TheCharacterDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
@@ -50,7 +55,6 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void save(MovieDTO movieDTO) {
-
         if((movieDTO.getTitle()==null || movieDTO.getTitle().isBlank()) || movieDTO.getCreationDate()==null || (movieDTO.getUrlImage()==null || movieDTO.getUrlImage().isBlank()) || movieDTO.getRating()==null ){
             throw  new IncompleteOrIncompatibleOrNullFieldsException("Incomplete/incompatible or null fields");
         }
@@ -63,7 +67,6 @@ public class MovieServiceImpl implements MovieService {
             movieRepositoryImpl.save(movie);
         }
     }
-
 
     @Override
     public void delete(Long id) {

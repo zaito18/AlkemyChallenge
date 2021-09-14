@@ -1,7 +1,7 @@
 package com.example.challengev2.repository;
 
 import com.example.challengev2.model.Movie;
-import com.example.challengev2.util.VoidParameterException;
+import com.example.challengev2.util.exception.VoidParameterException;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
