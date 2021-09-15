@@ -1,6 +1,6 @@
 # AlkemyChallenge
 _Api realizada para el challenge brindado por Alkemy_
-
+***Importante -> crear la base testDb antes de lanzar la api.
 ### Tareas realizadas : 
 
 _Funciones del challenge._
